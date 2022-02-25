@@ -37,4 +37,6 @@ data class RedditNewsDataResponse(
     @SerializedName("author") val author: String,
     @SerializedName("url") val url: String,
     @SerializedName("subreddit_subscribers") val subreddit_subscribers: Int,
+    @SerializedName("created") val created: Int,
+    @SerializedName("num_comments") val num_comments: Int
 ) : Parcelable

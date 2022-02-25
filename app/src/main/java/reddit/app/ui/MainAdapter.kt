@@ -52,6 +52,8 @@ class MainAdapter(
                 )
                 descriptionTextviewRecyclerItem.text = data.data.title
                 itemView.setOnClickListener { openInNewWindow(data) }
+                starTextview.text = data.data.score.toString()
+                messageTextview.text = data.data.num_comments.toString()
             }
         }
     }
