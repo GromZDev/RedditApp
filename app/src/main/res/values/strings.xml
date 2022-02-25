@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">RedditApp</string>
+    <string name="dialog_title_stub">Undefined error</string>
+    <string name="dialog_button_cancel">Cancel</string>
+    <string name="no_connection">Отсутствует интернет-соединение. Повторите попытку позже</string>
+    <string name="empty_server_response_on_success">Response from server is
+empty</string>
+    <string name="undefined_error">Undefined error</string>
+    <string name="word_image">Word Image</string>
+    <string name="dialog_title_device_is_offline">Нет соединения с интернетом</string>
+    <string name="dialog_message_device_is_offline">Приложение без интернета не работает. Подключите.
+    </string>
+    <string name="error">Error</string>
+    <string name="update">Обновить</string>
 </resources>

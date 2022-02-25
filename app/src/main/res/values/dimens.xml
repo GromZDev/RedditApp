@@ -1,0 +1,9 @@
+<resources>
+    <dimen name="item_layout_padding">12dp</dimen>
+
+    //Image size
+    <dimen name="image_width">160dp</dimen>
+    <dimen name="image_height">120dp</dimen>
+    <dimen name="image_margin_start">4dp</dimen>
+    <dimen name="image_stroke">6dp</dimen>
+</resources>
