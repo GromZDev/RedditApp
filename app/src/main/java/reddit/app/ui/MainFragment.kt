@@ -20,6 +20,7 @@ import reddit.app.data.RedditChildrenResponse
 import reddit.app.databinding.FragmentMainBinding
 import reddit.app.interactor.MainInterActor
 import reddit.app.utils.image.GlideImageLoader
+import reddit.app.utils.networkstatus.isOnline
 import reddit.app.utils.viewById
 import reddit.app.viewmodel.MainViewModel
 
@@ -64,21 +65,23 @@ class MainFragment : BaseFragment<AppState, MainInterActor>() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        /** Сеть  */
+        /** Сеть =================================================== */
+        isNetworkAvailable = context?.let { it1 -> isOnline(it1) } == true
         if (isNetworkAvailable) {
-            model.getData(isNetworkAvailable)
+            model.getData(true)
+
         } else {
-            /**  showNoInternetConnectionDialog() - если нужно вывести диалог */
+            model.getData(false)
+            showNoInternetConnectionDialog()
             binding.mainFragmentRoot.showSnackBarForConnection(
                 getString(R.string.no_connection), 5000,
                 { setColorSbBG() },
                 { setTextSbColor(ContextCompat.getColor(context, R.color.black)) }
             )
         }
-
+        /** ======================================================== */
 
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
