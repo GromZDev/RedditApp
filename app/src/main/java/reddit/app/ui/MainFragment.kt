@@ -106,10 +106,12 @@ class MainFragment : BaseFragment<AppState, MainInterActor>() {
 
                         binding.mainActivityRecyclerview.adapter =
                             dataModel?.let {
-                                MainAdapter(
-                                    onListItemClickListener,
-                                    dataModel.data.children, GlideImageLoader()
-                                )
+                                dataModel.data?.children?.let { it1 ->
+                                    MainAdapter(
+                                        onListItemClickListener,
+                                        it1, GlideImageLoader()
+                                    )
+                                }
                             }
                     } else {
                         binding.mainActivityRecyclerview.let {
@@ -143,7 +145,7 @@ class MainFragment : BaseFragment<AppState, MainInterActor>() {
         showViewError()
         binding.errorTextview.text = error ?: getString(R.string.undefined_error)
         binding.reloadButton.setOnClickListener {
-            model.getData(true)
+          //  model.getData(true)
 
 
         }

@@ -6,24 +6,24 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class DataModel(
-    @SerializedName("kind") val kind: String,
-    @SerializedName("data") val data: RedditDataResponse
+    @SerializedName("kind") val kind: String? = "",
+    @SerializedName("data") val data: RedditDataResponse? = null
 ) : Parcelable
 
 @Parcelize
 data class RedditDataResponse(
-    @SerializedName("after") val after: String,
-    @SerializedName("dist") val dist: Int,
-    @SerializedName("modhash") val modhash: String,
-    @SerializedName("geo_filter") val geo_filter: String,
+    @SerializedName("after") val after: String? = "",
+    @SerializedName("dist") val dist: Int? = 0,
+    @SerializedName("modhash") val modhash: String? = "",
+    @SerializedName("geo_filter") val geo_filter: String? = "",
     @SerializedName("children") val children: List<RedditChildrenResponse>,
-    @SerializedName("before") val before: String
+    @SerializedName("before") val before: String? = ""
 
 ) : Parcelable
 
 @Parcelize
 data class RedditChildrenResponse(
-    @SerializedName("kind") val kind: String,
+    @SerializedName("kind") val kind: String? = "",
     @SerializedName("data") val data: RedditNewsDataResponse
 ) : Parcelable
 

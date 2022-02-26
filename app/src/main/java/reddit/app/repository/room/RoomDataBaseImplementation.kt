@@ -17,7 +17,8 @@ class RoomDataBaseImplementation(private val historyDao: HistoryDao) :
     /** Сохраняем слово в БД для интерактора */
     override suspend fun saveToDB(appState: AppState) {
         convertDataModelSuccessToEntity(appState)?.let {
-            historyDao.insert(it)
+            historyDao.insertAll(it)
+            Log.d("TAG", it.size.toString())
         }
     }
 }

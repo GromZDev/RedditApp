@@ -9,7 +9,7 @@ interface HistoryDao {
     @Query("SELECT * FROM HistoryEntity")
     suspend fun all(): List<HistoryEntity>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(entity: HistoryEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
