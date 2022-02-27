@@ -1,12 +1,19 @@
 package reddit.app.viewmodel
 
+import android.app.Application
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import reddit.app.base.AppState
 import reddit.app.base.BaseViewModel
+import reddit.app.data.RedditNewsDataResponse
 import reddit.app.interactor.MainInterActor
+import reddit.app.repository.reporemote.paging.RedditRepo
 
 
 class MainViewModel(
@@ -14,6 +21,11 @@ class MainViewModel(
 ) : BaseViewModel<AppState>() {
 
     private val livedataToObserve: LiveData<AppState> = _mutableLiveData
+    private val redditRepo = RedditRepo()
+
+    fun fetchPosts(): Flow<PagingData<RedditNewsDataResponse>> {
+        return redditRepo.fetchPosts().cachedIn(viewModelScope)
+    }
 
     fun subscribe(): LiveData<AppState> {
         return livedataToObserve

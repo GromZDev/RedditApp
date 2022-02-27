@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.imageview.ShapeableImageView
-import q4_android_professional.myapplication.utils.ImageLoader
+import reddit.app.utils.image.ImageLoader
 import reddit.app.data.RedditChildrenResponse
 import reddit.app.databinding.ItemMainFragmentRvBinding
 

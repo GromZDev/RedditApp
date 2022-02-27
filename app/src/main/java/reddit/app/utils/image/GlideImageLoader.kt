@@ -6,7 +6,6 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.google.android.material.imageview.ShapeableImageView
-import q4_android_professional.myapplication.utils.ImageLoader
 
 class GlideImageLoader : ImageLoader<ShapeableImageView> {
     override fun loadInto(url: String, container: ShapeableImageView) {

@@ -9,8 +9,11 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.getKoin
 import org.koin.core.scope.Scope
 import reddit.app.R
@@ -44,6 +47,7 @@ class MainFragment : BaseFragment<AppState, MainInterActor>() {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
     private var adapter: MainAdapter? = null
+    private val redditAdapter = RedditAdapter(GlideImageLoader())
     private val onListItemClickListener: MainAdapter.OnListItemClickListener =
         object : MainAdapter.OnListItemClickListener {
             override fun onItemClick(data: RedditChildrenResponse) {
@@ -64,12 +68,11 @@ class MainFragment : BaseFragment<AppState, MainInterActor>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         /** Сеть =================================================== */
         isNetworkAvailable = context?.let { it1 -> isOnline(it1) } == true
         if (isNetworkAvailable) {
-            model.getData(true)
-
+            //   model.getData(true)
+            fetchPosts()
         } else {
             model.getData(false)
             showNoInternetConnectionDialog()
@@ -81,6 +84,14 @@ class MainFragment : BaseFragment<AppState, MainInterActor>() {
         }
         /** ======================================================== */
 
+    }
+
+    private fun fetchPosts() {
+        lifecycleScope.launch {
+            model.fetchPosts().collectLatest { pagingData ->
+                redditAdapter.submitData(pagingData)
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -145,9 +156,6 @@ class MainFragment : BaseFragment<AppState, MainInterActor>() {
         showViewError()
         binding.errorTextview.text = error ?: getString(R.string.undefined_error)
         binding.reloadButton.setOnClickListener {
-          //  model.getData(true)
-
-
         }
     }
 
@@ -173,7 +181,11 @@ class MainFragment : BaseFragment<AppState, MainInterActor>() {
     private fun initViews() {
         binding.mainActivityRecyclerview.layoutManager =
             LinearLayoutManager(context)
-        binding.mainActivityRecyclerview.adapter = adapter
+
+        binding.mainActivityRecyclerview.adapter = redditAdapter.withLoadStateHeaderAndFooter(
+            header = RedditLoadingAdapter(),
+            footer = RedditLoadingAdapter()
+        )
     }
 
     private fun iniViewModel() {

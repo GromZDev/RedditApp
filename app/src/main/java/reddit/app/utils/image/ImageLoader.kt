@@ -1,4 +1,4 @@
-package q4_android_professional.myapplication.utils
+package reddit.app.utils.image
 
 interface ImageLoader<T> {
 

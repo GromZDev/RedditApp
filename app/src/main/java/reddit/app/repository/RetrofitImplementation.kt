@@ -17,7 +17,7 @@ class RetrofitImplementation : DataSource<DataModel> {
         return getService(BaseInterceptor.interceptor).searchAsync().await()
     }
 
-    private fun getService(interceptor: Interceptor): ApiService {
+    fun getService(interceptor: Interceptor): ApiService {
         return createRetrofit(interceptor).create(ApiService::class.java)
     }
 
