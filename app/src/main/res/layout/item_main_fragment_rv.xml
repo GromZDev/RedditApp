@@ -1,0 +1,121 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/error_linear_layout"
+    style="@style/MyRedditRecyclerItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/item_layout_padding">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/item_word_image"
+        android:layout_width="@dimen/image_width"
+        android:layout_height="@dimen/image_height"
+        android:layout_marginStart="@dimen/image_margin_start"
+        android:contentDescription="@string/word_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ItemRounded"
+        app:strokeColor="@color/img_stroke_color"
+        app:strokeWidth="@dimen/image_stroke" />
+
+    <TextView
+        android:id="@+id/header_textview_recycler_item"
+        style="@style/HeaderTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/item_word_image"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Header" />
+
+    <TextView
+        android:id="@+id/description_textview_recycler_item"
+        style="@style/BaseTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/image_margin_start"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/item_word_image"
+        app:layout_constraintTop_toBottomOf="@id/header_textview_recycler_item"
+        tools:text="Description: Lorem ipsum dolor..." />
+
+    <TextView
+        android:id="@+id/transcription_textview_recycler_item"
+        style="@style/BaseTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/image_margin_start"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/item_word_image"
+        app:layout_constraintTop_toBottomOf="@id/description_textview_recycler_item"
+        tools:text="transcription" />
+
+    <TextView
+        android:id="@+id/message_textview"
+        style="@style/BaseTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="28dp"
+        android:textSize="22sp"
+        android:textColor="@color/color_text_main"
+        app:layout_constraintEnd_toEndOf="@+id/transcription_textview_recycler_item"
+        app:layout_constraintTop_toBottomOf="@+id/transcription_textview_recycler_item"
+        tools:text="5"/>
+
+    <ImageView
+        android:id="@+id/message_iw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_message"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/message_textview"
+        app:layout_constraintTop_toBottomOf="@+id/transcription_textview_recycler_item"
+        android:contentDescription="@string/message_iw" />
+
+    <TextView
+        android:id="@+id/star_textview"
+        style="@style/BaseTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="16dp"
+        android:textSize="22sp"
+        android:textColor="@color/color_text_main"
+        app:layout_constraintEnd_toStartOf="@+id/message_iw"
+        app:layout_constraintTop_toBottomOf="@+id/transcription_textview_recycler_item"
+        tools:text="5"/>
+
+    <ImageView
+        android:id="@+id/star_iw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_star"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/star_textview"
+        app:layout_constraintTop_toBottomOf="@+id/transcription_textview_recycler_item"
+        android:contentDescription="@string/message_iw" />
+
+    <TextView
+        android:id="@+id/created_textview"
+        style="@style/BaseTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="16dp"
+        android:textSize="22sp"
+        android:textColor="@color/color_text_main"
+        app:layout_constraintEnd_toStartOf="@+id/star_iw"
+        app:layout_constraintTop_toBottomOf="@+id/transcription_textview_recycler_item"
+        tools:text="5"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
