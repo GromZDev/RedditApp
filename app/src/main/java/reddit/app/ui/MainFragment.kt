@@ -71,7 +71,7 @@ class MainFragment : BaseFragment<AppState, MainInterActor>() {
         /** Сеть =================================================== */
         isNetworkAvailable = context?.let { it1 -> isOnline(it1) } == true
         if (isNetworkAvailable) {
-            //   model.getData(true)
+            /**  model.getData(true) // ---- Для записи в БД */
             fetchPosts()
         } else {
             model.getData(false)
