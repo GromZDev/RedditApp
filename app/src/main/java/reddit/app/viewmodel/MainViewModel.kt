@@ -1,12 +1,12 @@
 package reddit.app.viewmodel
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import reddit.app.base.AppState
@@ -42,7 +42,6 @@ class MainViewModel(
     private suspend fun startInterActor(isOnline: Boolean) =
         withContext(Dispatchers.IO) {
             _mutableLiveData.postValue(
-
                 interActor.getData(
                     isOnline
                 )
@@ -54,7 +53,7 @@ class MainViewModel(
     }
 
     override fun onCleared() {
-        _mutableLiveData.value = AppState.Success(null)
+        _mutableLiveData.value = AppState.Success(data = null, flow = flowOf())
         super.onCleared()
     }
 }

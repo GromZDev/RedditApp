@@ -1,10 +1,13 @@
 package reddit.app.koin
 
+import androidx.paging.PagingData
 import androidx.room.Room
+import kotlinx.coroutines.flow.Flow
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import reddit.app.data.DataModel
+import reddit.app.data.RedditNewsDataResponse
 import reddit.app.interactor.MainInterActor
 import reddit.app.repository.RetrofitImplementation
 import reddit.app.repository.repolocal.RepositoryImplementationLocal
@@ -19,13 +22,13 @@ import reddit.app.viewmodel.MainViewModel
 /** application - тут хранятся зависимости, используемые во всем приложении */
 val application = module {
 
-    single<Repository<DataModel>> {
+    single<Repository<DataModel, Flow<PagingData<RedditNewsDataResponse>>>> {
         RepositoryImplementation(RetrofitImplementation())
     }
 
     single { Room.databaseBuilder(get(), HistoryDataBase::class.java, "HistoryDB").build() }
     single { get<HistoryDataBase>().historyDao() }
-    single<RepositoryLocal<DataModel>> {
+    single<RepositoryLocal<DataModel, Flow<PagingData<RedditNewsDataResponse>>>> {
         RepositoryImplementationLocal(RoomDataBaseImplementation(get()))
     }
 
